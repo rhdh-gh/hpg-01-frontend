@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: hpg-01-poi-map-app-dev
+  annotations:
+    argocd/app-name: hpg-01-poi-map-app-dev
+    backstage.io/kubernetes-id: hpg-01-poi-map-app
+    backstage.io/kubernetes-namespace: hpg-01
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh-gh/hpg-01-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.rosa-x4jc7.l07n.p1.openshiftapps.com/dev-pipelines/ns/hpg-01/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.rosa-x4jc7.l07n.p1.openshiftapps.com/k8s/ns/hpg-01/deployments/hpg-01-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.rosa-x4jc7.l07n.p1.openshiftapps.com/#https://github.com/rhdh-gh/hpg-01-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://hpg-01-poi-map-app-hpg-01.apps.rosa-x4jc7.l07n.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/hpgrahsl"
+  system: workshop-system-hpg-01
+  consumesApis:
+    - gateway-api-hpg-01
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-hpg-01
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/hpgrahsl"
